@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>parent</groupId>
+  <artifactId>parent</artifactId>
+  <version>21.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>com.sap.sample.clock</module>
+    <module>com.sap.sample.coloredbox</module>
+    <module>sampleFeature</module>
+    <module>sampleRepository</module>
+  </modules>
+
+  <properties>
+    <!-- output directory for all projects which can be overridden with -DoutputDirectory -->
+    <outputDirectory>${maven.multiModuleProjectDirectory}/target</outputDirectory>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <tycho-version>1.3.0</tycho-version>
+    <jarsigner-version>3.0.0</jarsigner-version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>photon</id>
+      <layout>p2</layout>
+      <url>http://download.eclipse.org/releases/photon</url>
+    </repository>
+    <!--
+      create a cutstom p2 repository for Lumira Designer with eclipse (see https://wiki.eclipse.org/Equinox/p2/Publisher#Features_And_Bundles_Publisher_Application)
+      sadly tycho has a bug so we can't use a p2 repository over http (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=453318)
+    -->
+    <repository>
+      <id>lumiradesigner</id>
+      <layout>p2</layout>
+      <url>file:///C:/Program%20Files/SAP%20Lumira/Lumira%20Designer</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <directory>${outputDirectory}/${project.artifactId}</directory>
+
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <extensions>true</extensions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>target-platform-configuration</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <environments>
+            <environment>
+              <os>win32</os>
+              <ws>win32</ws>
+              <arch>x86</arch>
+            </environment>
+          </environments>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-packaging-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <!-- custom qualifier suffix. this can be overridden with -DforceContextQualifier (see https://wiki.eclipse.org/Tycho/FAQ#How_do_I_embed_a_configurable_build_version.3F) -->
+          <format>'preview'</format>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-p2-repository-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <configuration>
+          <!-- custom zip filename which includes the correct buildQualifier (see https://www.eclipse.org/tycho/sitedocs/tycho-packaging-plugin/build-qualifier-mojo.html) -->
+          <finalName>${project.artifactId}-${unqualifiedVersion}.${buildQualifier}</finalName>
+        </configuration>
+      </plugin>
+
+      <!-- uncomment to enable jar signing -->
+      <!-- <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jarsigner-plugin</artifactId>
+        <version>${jarsigner-version}</version>
+        <configuration>
+          <keystore>${session.executionRootDirectory}/signing.keystore</keystore>
+          <storepass>***</storepass>
+          <alias>alias</alias>
+          <keypass>***</keypass>
+          <tsa>http://www.example.com/</tsa>
+        </configuration>
+        <executions>
+          <execution>
+            <id>sign</id>
+            <goals>
+              <goal>sign</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin> -->
+    </plugins>
+  </build>
+
+</project>
