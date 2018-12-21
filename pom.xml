@@ -31,7 +31,7 @@
     </repository>
     <!--
       create a cutstom p2 repository for Lumira Designer with eclipse (see https://wiki.eclipse.org/Equinox/p2/Publisher#Features_And_Bundles_Publisher_Application)
-      sadly tycho has a bug so we can't use a p2 repository over http (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=453318)
+      sadly tycho has a bug so we can't use the p2 repository over http (see https://bugs.eclipse.org/bugs/show_bug.cgi?id=453318)
     -->
     <repository>
       <id>lumiradesigner</id>
