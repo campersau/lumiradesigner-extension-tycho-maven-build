@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SAP BusinessObjects Lumira Component SDK Extension Sample Colored Box
+Bundle-SymbolicName: com.sap.sample.coloredbox;singleton:=true
+Bundle-Version: 21.0.0.qualifier
+Require-Bundle: com.sap.ip.bi.zen.rt.components.sdk.eclipse
+Bundle-Vendor: SAP

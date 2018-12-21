@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	xmlns="http://www.sap.com/bi/zen/sdk"
+	id="com.sap.sample.clock"
+	title="SAP BusinessObjects Lumira Component SDK Extension Sample Clock"
+	version="21.0"
+	vendor="SAP">
+	<component
+		id="Clock"
+		title="Clock"
+		tooltip="Displays the current time in an animated clock"
+		icon="res/icon.png"
+		handlerType="div"
+		modes="commons m">
+		<jsInclude>res/js/component.js</jsInclude>
+		<property
+			id="isRailwayClock"
+			title="Railway Clock"
+			type="boolean"
+			bindable="true"/>
+		<initialization>
+			<defaultValue property="LEFT_MARGIN">40</defaultValue>
+			<defaultValue property="TOP_MARGIN">40</defaultValue>		
+			<defaultValue property="WIDTH">200</defaultValue>
+			<defaultValue property="HEIGHT">200</defaultValue>
+			<defaultValue property="isRailwayClock">false</defaultValue>
+		</initialization>
+	</component>
+</sdkExtension>

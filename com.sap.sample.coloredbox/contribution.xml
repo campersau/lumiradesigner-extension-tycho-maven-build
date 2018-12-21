@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdkExtension
+	xmlns="http://www.sap.com/bi/zen/sdk"
+	id="com.sap.sample.coloredbox"
+	title="SAP BusinessObjects Lumira Component SDK Extension Sample Colored Box"
+	version="21.0"
+	vendor="SAP">
+	<component
+		id="ColoredBox"
+		title="Colored Box"
+		icon="res/icon.png"
+		handlerType="div"
+		modes="commons m"
+		supportsExportContent="true"
+		propertySheetPath="res/additional_properties_sheet/additional_properties_sheet.html">
+		<requireJs modes="commons m">res/js/component</requireJs>
+		<property
+			id="color"
+			title="Color"
+			type="Color"
+			group="Display"
+			bindable="true"/>
+		<property
+			id="onclick"
+			title="On Click"
+			type="ScriptText"
+			group="Events"/>
+		<initialization>
+			<defaultValue property="LEFT_MARGIN">40</defaultValue>
+			<defaultValue property="TOP_MARGIN">40</defaultValue>		
+			<defaultValue property="WIDTH">100</defaultValue>
+			<defaultValue property="HEIGHT">100</defaultValue>
+			<defaultValue property="color">red</defaultValue>
+		</initialization>
+	</component>
+</sdkExtension>
